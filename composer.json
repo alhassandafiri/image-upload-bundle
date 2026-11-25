@@ -1,0 +1,19 @@
+{
+    "name": "imho/image-upload-bundle",
+    "description": "Secure image upload service and form type for Symfony",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.2",
+        "symfony/framework-bundle": "^7.3",
+        "symfony/form": "^7.3",
+        "symfony/validator": "^7.3",
+        "symfony/filesystem": "^7.3",
+        "symfony/mime": "^7.3"
+    },
+    "autoload": { "psr-4": { "Imho\\ImageUploadBundle\\": "src/" } },
+
+    "repositories": [
+        { "type": "path", "url": "/home/harson/Projects/dev/image-upload-bundle", "options": { "symlink": true } }
+    ]
+}
