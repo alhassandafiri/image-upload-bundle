@@ -9,6 +9,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotNull;
 
+/**
+ * Reusable form field for uploading an image.
+ *
+ * Extends Symfony's FileType with an Image constraint, an "accept" attribute matching the allowed types,
+ * and an optional NotNull constraint. The file is not mapped to an entity property, so the
+ * caller reads it from the form and stores the resulting filename itself.
+ *
+ * Options max_size and mime_types override the bundle's configured defaults for a single field.
+ */
 class ImageUploadType extends AbstractType
 {
     /** @param list<string> $mimeTypes */
@@ -18,6 +27,10 @@ class ImageUploadType extends AbstractType
     ) {
     }
 
+    /**
+     * Sets the field's defaults from the bundle configuration, and builds the validation constraints
+     * from the final option values, so per-field overrides take effect.
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -43,6 +56,9 @@ class ImageUploadType extends AbstractType
         });
     }
 
+    /**
+     * Inherits all behaviour from FileType.
+     */
     public function getParent(): string
     {
         return FileType::class;
